@@ -64,45 +64,54 @@ Chỉ định version cho các dependency. có 6 cách xác định:
    cách
    hoặc dấu phẩy, OR được biểu diễn bằng hai dấu gạch dọc: ||.
 
-   Ví dụ >2.7 nghĩa là bất kỳ version nào trên 2.7. >2.7 <=3.5 bao gồm các version từ 2.7 trở lên tới 3.5 (bao gồm cả 3.5).
-2. wildcard verion 
+   Ví dụ >2.7 nghĩa là bất kỳ version nào trên 2.7. >2.7 <=3.5 bao gồm các version từ 2.7 trở lên tới 3.5 (bao gồm cả
+   3.5).
+2. wildcard verion
 
+Bằng cách sử dụng 1 ký tự đại diện, bạn có thể sử dụng 1 pattern .x.x.* sẽ bao gồm các version x.x.0 trở lên và trở
+xuống.( bao gồm x.x nhưng không gồm x.y)
 
-Bằng cách sử dụng 1 ký tự đại diện, bạn có thể sử dụng 1 pattern .x.x.* sẽ bao gồm các version x.x.0 trở lên  và trở xuống.( bao gồm x.x nhưng không gồm x.y)  
+Ví dụ 2.3.* sẽ bao gồm từ 2.3.0 trở lên và trừ 2.4 Nó tương đương với >=2.3.0 <2.4
 
-Ví dụ 2.3.* sẽ bao gồm từ 2.3.0 trở lên và trừ 2.4 Nó tương đương với >=2.3.0 <2.4  
 3. Hyphen Ranges
 
-cho phép bạn xác định range dễ dàng hơn, mặc dù bạn sẽ cảm thấy bối rối hơn một chút vì cách nó xử lý các partial version. Full version gồm ba số trong trường hợp hyphen ranges thực hiện đầy đủ ý nghĩa của nó
+cho phép bạn xác định range dễ dàng hơn, mặc dù bạn sẽ cảm thấy bối rối hơn một chút vì cách nó xử lý các partial
+version. Full version gồm ba số trong trường hợp hyphen ranges thực hiện đầy đủ ý nghĩa của nó
 
 2.0.0 – 3.0.0 nghĩa là tất cả các version bao gồm 2.0.0 trở lên và bao gồm 3.0.0 trở xuống.
 
 2.0 – 3.0 bao gồm bất kỳ version nào kể cả 2.0 trở lên nhưng không bao gồm version 3.1
 
 4. Tiddle Range  
-   Tiddle Range rất tuyệt vời để đáp ứng các yêu cầu nhỏ nhất cho việc xác định version và chấp nhận bất kỳ version nào trở lên, nhưng không bao gồm chính nó. Nếu chỉ rõ là ~3.6 thì bạn chấp nhận các version từ 3.6 trở lên nhưng không bao gồm 4.0.
+   Tiddle Range rất tuyệt vời để đáp ứng các yêu cầu nhỏ nhất cho việc xác định version và chấp nhận bất kỳ version nào
+   trở lên, nhưng không bao gồm chính nó. Nếu chỉ rõ là ~3.6 thì bạn chấp nhận các version từ 3.6 trở lên nhưng không
+   bao gồm 4.0.
 
 Method này tương đương với >-3.6 <4.0
+
 5. Caret Range  
-   Caret Range có nghĩa là chấp nhận tất cả các phiên bản hiện tại tính từ nó nhưng không bao gồm phiên bản lớn hơn. Ví dụ ^3.3.5 bạn chấp nhận bất kỳ version nào trở lên, nhưng không bao gồm4.0
+   Caret Range có nghĩa là chấp nhận tất cả các phiên bản hiện tại tính từ nó nhưng không bao gồm phiên bản lớn hơn. Ví
+   dụ ^3.3.5 bạn chấp nhận bất kỳ version nào trở lên, nhưng không bao gồm4.0
 
 6. Locking trong Composer  
-   Locking là một trong những tính năng hữu ích nhất của Composer. Trước tiên ta sẽ nói đến composer.lock. Công việc của nó là khóa lại các versions của các components đã sử dụng. Lock file có thể chắc chắn rằng mọi người làm việc với các versions giống nhau của các files.
+   Locking là một trong những tính năng hữu ích nhất của Composer. Trước tiên ta sẽ nói đến composer.lock. Công việc của
+   nó là khóa lại các versions của các components đã sử dụng. Lock file có thể chắc chắn rằng mọi người làm việc với các
+   versions giống nhau của các files.
 
-Khi lần đầu tiên sử dụng Composer để lấy một dependency nó sẽ ghi chính xác version vào file Composer.lock. Ví dụ như nếu bạn chỉ rõ 2.3.* và 2.3.5 là version mới nhất thì version được cài đặt sẽ là 2.3.5 và nó sẽ được đưa vào trong lock file.
+Khi lần đầu tiên sử dụng Composer để lấy một dependency nó sẽ ghi chính xác version vào file Composer.lock. Ví dụ như
+nếu bạn chỉ rõ 2.3.* và 2.3.5 là version mới nhất thì version được cài đặt sẽ là 2.3.5 và nó sẽ được đưa vào trong lock
+file.
 
-Giả sử sau 1 tuần có một developer gia nhập team của bạn. Trong thời gian này dependency đã được update lên 2.3.6. Nếu anh ta sử dụng câu lệnh (composer install) thì sẽ nhận được2.3.5 vì nó đã được ghi trong file lock.
+Giả sử sau 1 tuần có một developer gia nhập team của bạn. Trong thời gian này dependency đã được update lên 2.3.6. Nếu
+anh ta sử dụng câu lệnh (composer install) thì sẽ nhận được2.3.5 vì nó đã được ghi trong file lock.
 
 Tất nhiên bạn có thể quyết định việc update các dependencies của mình. Trong trường hợp đó, bạn sẽ thực hiện lệnh :
 
 ```php
 composer update 
 ```
+
 Nó sẽ lấy các version mới nhất và ghi chúng vào file lock.
-
-
-
-
 
 Sử dụng `composer update` để cập nhật các dependency của bạn, nó sẽ lấy các version mới nhất và ghi vào file lock.
 
@@ -111,38 +120,40 @@ thích.
 
 **require dev** cho phép bạn xác định các dependencies cho môi trường dev. Ghi các dependencies vào mảng `require-dev`
 
-
 ## PHP standard recommendation
 
-### PRS 1 - Basic Coding Standards 
+### PRS 1 - Basic Coding Standards
 
-1. Tổng quan : 
-  
- - Tệp phải sử dụng  thẻ `<?php ` và `<?=`
- - Tệp phải sử dụng UTF-8 không có BOM cho mã 
- - Tên tệp phải khai báo các ký hiệu ( hằng ,lớp, hàm ) hoặc hiệu ứng phụ ( vd: tạo đầu ra, thay đổi cài đặt ini.php ) nhưng không nên là cả hai. 
- - Không gian tên và lớp phải tuân thủ theo `tự động tải `PSR[PSR-0 , PSR-4]
- - Tên lớp phải là PascalCase  `class ActionPeople`
- - Hằng của lớp phải viết hoa và phân cách bằng dấu gạch dưới: `const MAX_INT`
- - Tên phương thức phải khai báo dạng camelCase `function sayHello `
+1. Tổng quan :
+
+- Tệp phải sử dụng thẻ `<?php ` và `<?=`
+- Tệp phải sử dụng UTF-8 không có BOM cho mã
+- Tên tệp phải khai báo các ký hiệu ( hằng ,lớp, hàm ) hoặc hiệu ứng phụ ( vd: tạo đầu ra, thay đổi cài đặt ini.php )
+  nhưng không nên là cả hai.
+- Không gian tên và lớp phải tuân thủ theo `tự động tải `PSR[PSR-0 , PSR-4]
+- Tên lớp phải là PascalCase  `class ActionPeople`
+- Hằng của lớp phải viết hoa và phân cách bằng dấu gạch dưới: `const MAX_INT`
+- Tên phương thức phải khai báo dạng camelCase `function sayHello `
 
 
 2. Tệp
- 
-2.1 Thẻ PHP  
- 
-Mã PHP phải sử dụng thẻ `<?php ?> ` hoặc kiểu xuất ngắn `<?= ?>`; không sử dụng các biến thể khác. 
 
-2.2 Ký tự kết thúc 
-Mã PHP chỉ sử dụng UTF-8 không BOM 
+2.1 Thẻ PHP
 
+Mã PHP phải sử dụng thẻ `<?php ?> ` hoặc kiểu xuất ngắn `<?= ?>`; không sử dụng các biến thể khác.
 
-2.3. Hiệu ứng phụ 
-Một file nên khai báo các ký hiệu mới ( lớp, hàm, hằng,..) và không gây ra hiệu ứng phụ, hoặc nó nên thực thi logic mà với hiệu ứng phụ nhưng không nên làm cả hai 
+2.2 Ký tự kết thúc
+Mã PHP chỉ sử dụng UTF-8 không BOM
 
-Cụm từ 'hiệu ứng phụ ' nghĩa là thực thi các logic không trực tiếp liên quan đến khai báo lớp, hàm, hằng,..  chỉ đơn thuần từ việc bao gồm tệp.  
-Hiệu ứng phụ bao gồm nhưng không giới hạn với: sinh đầu ra, sử dụng rõ ràng require hay include, kết nối với dịch vụ bên ngoài, điều chỉnh tệp init, phát ra cảnh báo hay ngoại lệ, điều chỉnh biến toàn cục hay biến tĩnh, đọc hay viết từ 1 file và hơn thế nữa. 
+2.3. Hiệu ứng phụ
+Một file nên khai báo các ký hiệu mới ( lớp, hàm, hằng,..) và không gây ra hiệu ứng phụ, hoặc nó nên thực thi logic mà
+với hiệu ứng phụ nhưng không nên làm cả hai
 
+Cụm từ 'hiệu ứng phụ ' nghĩa là thực thi các logic không trực tiếp liên quan đến khai báo lớp, hàm, hằng,.. chỉ đơn
+thuần từ việc bao gồm tệp.  
+Hiệu ứng phụ bao gồm nhưng không giới hạn với: sinh đầu ra, sử dụng rõ ràng require hay include, kết nối với dịch vụ bên
+ngoài, điều chỉnh tệp init, phát ra cảnh báo hay ngoại lệ, điều chỉnh biến toàn cục hay biến tĩnh, đọc hay viết từ 1
+file và hơn thế nữa.
 
 Dưới đây là 1 ví dụ của file với cả khai báo và hiệu ứng phụ, nên tránh :
 
@@ -164,18 +175,16 @@ function foo()
 }
 ```
 
-3. Không gian tên và lớp 
+3. Không gian tên và lớp
 
 - Không gian tên và lớp phải tuân theo tự động tải PSR[PSR-0, PSR-4]
 - Tên lớp phải là `PascalCase`
 
 4. Hằng lớp, thuộc tính và phương thức
 
-Từ khóa 'class' tham chiếu tới tất cả các class, interface, và traits 
-4.1 Hằng 
-Hằng lớp phải khai báo in hoa và các từ cách nhau bởi dấu gạch dưới. 
-
-
+Từ khóa 'class' tham chiếu tới tất cả các class, interface, và traits
+4.1 Hằng
+Hằng lớp phải khai báo in hoa và các từ cách nhau bởi dấu gạch dưới.
 
 4. Class Constants, Properties, and Methods
    The term "class" refers to all classes, interfaces, and traits.
@@ -191,45 +200,163 @@ class Foo
     const DATE_APPROVED = '2012-06-01';
 }
 ```
-4.2. Thuộc tính 
- Điều này hướng dẫn tránh bất kỳ gợi ý nào kể cả việc sử dụng $camelCase, or $under_score tên thuộc tính 
 
-Bất kể quy ước tên nào đựọc sử dụng nên được áp dụng 1 cách nhất quán trong phạm vi hợp lý. Phạm vi đó có thể ở cấp vendor, cấp gói, cấp lớp hay cấp phương thức. 
+4.2. Thuộc tính
+Điều này hướng dẫn tránh bất kỳ gợi ý nào kể cả việc sử dụng $camelCase, or $under_score tên thuộc tính
+
+Bất kể quy ước tên nào đựọc sử dụng nên được áp dụng 1 cách nhất quán trong phạm vi hợp lý. Phạm vi đó có thể ở cấp
+vendor, cấp gói, cấp lớp hay cấp phương thức.
 
 4.3. Phương thức  
 Tên phương thức phải đặt theo camelCase.
 
-### PSR-4 Autoloading 
+### PSR-4 Autoloading
 
-1. Bản này mô tả 1 cách cụ thể cho việc tự dộng tải các lớp từ đường dẫn file. Nó tương tác đầy đủ, và có thể dược sử dụng để thêm bất kỳ các chỉ định tự động tải bao gồm cả PSR-0. Bản này cũng mô tả nơi đặt file cái mà sẽ được tự động tải theo sự chỉ định 
-2. Chỉ định 
-  
-  - Từ khóa `class ` tham chiếu tới class, interface, traits. 
-  - Một tên lớp tốt đầy đủ có dạng sau: 
+1. Bản này mô tả 1 cách cụ thể cho việc tự dộng tải các lớp từ đường dẫn file. Nó tương tác đầy đủ, và có thể dược sử
+   dụng để thêm bất kỳ các chỉ định tự động tải bao gồm cả PSR-0. Bản này cũng mô tả nơi đặt file cái mà sẽ được tự động
+   tải theo sự chỉ định
+2. Chỉ định
 
-     ```php 
-     \<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
-     ``` 
-    
-     -  Tên lớp đầy đủ phải có 1 `namspace` cao nhất, cũng có thể biết như `vendor namspace`
-     - Tên lớp đầy đủ cũng có thể có 1 hoặc  nhiều `sub-namespace`. 
-     - Phải có tên lớp cuối cùng. 
-     - Dấu gạch dưới không có ý nghĩa trong bất kỳ đoạn nào của tên lớp tốt. 
-     - Các ký tự chữ cái trong tên lớp đủ điều kiện CÓ THỂ là bất kỳ sự kết hợp nào của chữ thường và chữ hoa.
-     - Tất cả các tên lớp phải tham chiếu theo kiểu phân biệt chữ hoa chữ thường. 
-  
+- Từ khóa `class ` tham chiếu tới class, interface, traits.
+- Một tên lớp tốt đầy đủ có dạng sau:
+
+   ```php 
+   \<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
+   ``` 
+
+    - Tên lớp đầy đủ phải có 1 `namspace` cao nhất, cũng có thể biết như `vendor namspace`
+    - Tên lớp đầy đủ cũng có thể có 1 hoặc nhiều `sub-namespace`.
+    - Phải có tên lớp cuối cùng.
+    - Dấu gạch dưới không có ý nghĩa trong bất kỳ đoạn nào của tên lớp tốt.
+    - Các ký tự chữ cái trong tên lớp đủ điều kiện CÓ THỂ là bất kỳ sự kết hợp nào của chữ thường và chữ hoa.
+    - Tất cả các tên lớp phải tham chiếu theo kiểu phân biệt chữ hoa chữ thường.
+
 3. Khi tải 1 tệp tương ứng với tên lớp. .
 
 
-- Chuỗi liền kề của 1 hoặc nhiều không gian tên và không gian tên đứng đầu, không bao gồm đấu phân tách vùng tên đứng đầu,  trong tên lớp đủ điều kiện ("tiền tố không gian tên") tương ứng với ít nhất một "thư mục cơ sở".
-- Chuỗi liền kề không gian tên con sau `tiền tố không gian tên ` tương ứng với 1 thư mục con trong 1 `thư mục cơ sở`, dấu phân tách các không gian tên đại diện cho 1 phân tách thư mục, thư mục con phải 
-khớp với tên của không gian tên con 
-- Tên lớp đích tương ứng với 1 file có mở rộng là `.php `. Tên file phải khớp với tên của lớp cuối. 
-- The terminating class name corresponds to a file name ending in .php. The file name MUST match the case of the terminating class name.
+- Chuỗi liền kề của 1 hoặc nhiều không gian tên và không gian tên đứng đầu, không bao gồm đấu phân tách vùng tên đứng
+  đầu, trong tên lớp đủ điều kiện ("tiền tố không gian tên") tương ứng với ít nhất một "thư mục cơ sở".
+- Chuỗi liền kề không gian tên con sau `tiền tố không gian tên ` tương ứng với 1 thư mục con trong 1 `thư mục cơ sở`,
+  dấu phân tách các không gian tên đại diện cho 1 phân tách thư mục, thư mục con phải
+  khớp với tên của không gian tên con
+- Tên lớp đích tương ứng với 1 file có mở rộng là `.php `. Tên file phải khớp với tên của lớp cuối.
+- The terminating class name corresponds to a file name ending in .php. The file name MUST match the case of the
+  terminating class name.
 
 
-4. Triển khai trình tự động tải không được ném ra ngoại lệ, không đươc sinh ra lõi bất kỳ cấp độ nào và không nên trả về 1 giá trị. 
+4. Triển khai trình tự động tải không được ném ra ngoại lệ, không đươc sinh ra lõi bất kỳ cấp độ nào và không nên trả về
+   1 giá trị.
 
 
+## Faker
 
+Faker là 1 thư viện PHP cái mà sinh ra dữ liệu giả cho bạn.
+
+1. Cài đặt:
+
+Faker yêu cầu PHP > 7.1
+
+`composer require fakerphp/faker`
+
+2. Cách sử dụng cơ bản :
+
+- Tự động tải:hỗ trợ cả hai PSR-0 và PSR-4.
+
+```php 
+require "vendor/autoload.php"
+```
+
+- Tạo dữ liệu giả:
+
+```php
+require_once 'vendor/autoload.php';
+
+// use the factory to create a Faker\Generator instance
+$faker = Faker\Factory::create();
+// generate data by calling methods
+echo $faker->name();
+// 'Vince Sporer'
+echo $faker->email();
+// 'walter.sophia@hotmail.com'
+echo $faker->text();
+// 'Numquam ut mollitia at consequuntur inventore dolorem.'
+```
+
+Mỗi lệnh `$faker->name()` sẽ sinh ra 1 kết quả ngẫu nhiên khác nhau.
+
+- Modify:
+  Faker cung cấp 3 provider đặc biệt : `unique`, `optional`, `valid` được gọi trước bất kỳ các provider khác.
+
+    - `unique()`: Yêu cầu Faker trả về các giá trị không giống nhau. Nếu không thể sinh ra một các dữ liệu duy nhất, sẽ ném ra 1 lỗi fatal. Nếu thiết lập tham số đầu tiên của option = true, sẽ không ném ra lỗi.  
+     ```php 
+        $result =  [];
+        for($i = 0; $i < 10; $i++)
+     {
+      $result[] = $faker->unique()->randomDigit();
+      }
+      print_r($result) // 9 2 1 3 4 7 5 6 8 0
+  
+     ```
+    - optional : Có thể bỏ qua trình cung cấp để lấy giá trị mặc định ( mặc định là null)
    
+     ```php 
+    $values = [];
+    for ($i = 0; $i < 10; $i++) {
+    // get a random digit, but also null sometimes
+    $values []= $faker->optional()->randomDigit();
+    }
+    print_r($values); // [1, 4, null, 9, 5, null, null, 4, 6, null]
+
+     ```  
+     `optional` chấp nhận 1 $weight làm tham số đầu tiên để tính toán khả năng xuất hiện của giá trị mặc định 
+      ```php
+       $faker->optional($weight = 0.1)->randomDigit(); // 90% chance of NULL
+       $faker->optional($weight = 0.9)->randomDigit(); // 10% chance of NULL
+      ```
+    `optional` chấp nhận tham só thứ 2 chỉ rõ giá trị mặc định là  gì 
+     ```php 
+       $faker->optional($weight = 0.1, $default = FALSE)->randomDigit(); // 90% chance of FALSE
+       $faker->optional($weight = 0.9, $default = 'nghia')->lastaname(); // 10% chance of Nghia
+     ```
+    
+    - `valid` : Chỉ chấp nhận các giá trị hợp lệ được cung cấp bởi hàm xác thực: 
+  
+    ```php 
+    $values = [];
+    $evenValidator = function($digit) {
+    return $digit % 2 === 0;
+     };
+    for ($i = 0; $i < 10; $i++) {
+    $values []= $faker->valid($evenValidator)->randomDigit();
+    }
+    print_r($values); // [0, 4, 8, 4, 2, 6, 0, 8, 8, 6]
+    ```
+     Giống như `unique`, `valid` sẽ sinh ra một lỗi fatal khi không có giá trị hợp lệ. 
+
+Nếu bạn muốn dùng 1 giá trị không phải do Faker tạo ra, sử dụng phương pháp `passthrought. Nó sẽ trả về các giá trị bạn đưa vào.
+  
+```php
+$faker->optional()->passthrough(mt_rand(5, 15));
+```
+
+
+- Bản địa hóa: 
+  Faker\Factory Có thể lấy 1 ngôn ngữ làm đối số để trả về dữ liệu của ngôn ngữ bản địa, nếu không tìm thấy, mặc định là `en_US`
+   
+
+```php 
+// create a French faker
+$faker = Faker\Factory::create('fr_FR');
+for ($i = 0; $i < 3; $i++) {
+    echo $faker->name() . "\n";
+}
+
+// Luce du Coulon
+// Auguste Dupont
+// Roger Le Voisin
+```
+
+- Hạt giống sinh 
+
+Bạn có thể luôn muốn nhận được cùng 1 giá trị được tạo. Trình tạo cung cấp 1 phương thức hạt giống, là qúa trình tạo só tự nhiên. 
+Goi cùng 1 tập lệnh với cùng hạt giống sẽ trả về kết quả giống nhau. 

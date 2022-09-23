@@ -1,0 +1,19 @@
+{
+    "name": "vannghia/design_pattern",
+    "description": "Learn about composer",
+    "autoload": {
+        "psr-4": {
+            "Vannghia\\DesignPattern\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vn0202",
+            "email": "nghiavuxp0202@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/php-timer": "^5.0",
+        "fakerphp/faker": "^1.20"
+    }
+}
